@@ -36,7 +36,7 @@ export default class TtyPlayer extends Tty {
   constructor(eventProvider) {
     super({});
     this.currentEventIndex = 0;
-    this.current = 0;
+    this.current = 50;
     this.duration = 0;
     this.status = StatusEnum.LOADING;
     this.statusText = '';

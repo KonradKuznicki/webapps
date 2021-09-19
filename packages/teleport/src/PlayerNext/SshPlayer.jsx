@@ -30,9 +30,11 @@ import { ProgressBarTty } from 'teleport/Player/ProgressBar';
 import Xterm from 'teleport/Player/Xterm';
 import BpfPlayer from './BpfPlayer';
 import SwitchMode, { ModeEnum } from './SwitchMode';
+import { linkConstructor } from 'teleport/Player/SshPlayer';
 
 export function Player(props) {
   const { url, bpfEvents = [] } = props;
+
   const tty = React.useMemo(() => {
     return props.tty || new TtyPlayer(new EventProvider({ url }));
   }, [url]);
@@ -104,7 +106,9 @@ export function Player(props) {
           )}
         </SplitPane>
       </Flex>
-      {eventCount > 0 && <ProgressBarTty tty={tty} />}
+      {eventCount > 0 && (
+        <ProgressBarTty tty={tty} linkConstructor={linkConstructor} />
+      )}
     </StyledPlayer>
   );
 }
